@@ -1,8 +1,10 @@
 package com.lbvguli.eduservice.controller;
 
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.lbvguli.commonutils.R;
 import com.lbvguli.eduservice.entity.EduTeacher;
+import com.lbvguli.eduservice.entity.vo.TeacherQuery;
 import com.lbvguli.eduservice.service.EduTeacherService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -47,6 +49,30 @@ public class EduTeacherController {
         }else{
             return R.error();
         }
+    }
+
+    @ApiOperation(value = "分页查询讲师")
+    @GetMapping("findAllPage/{current}/{limit}")
+    public R findAllPage(@PathVariable long current,
+                           @PathVariable long limit){
+        //1.创建page对象
+        //当前页 和每页大小
+        Page<EduTeacher> pageTeacher = new Page<>(current,limit);
+        teacherService.page(pageTeacher,null);
+        long total = pageTeacher.getTotal();
+        List<EduTeacher> records = pageTeacher.getRecords();
+
+        return R.ok().data("total",total).data("rows",records);
+    }
+
+    @ApiOperation(value = "条件查询带分页")
+    @GetMapping("findAllPageCondition/{current}/{limit}")
+    public R findAllPageCondition(@PathVariable long current,
+                                  @PathVariable long limit,
+                                  @PathVariable TeacherQuery query){
+
+        Page<EduTeacher> pageTeacher = new Page<>(current,limit);
+        teacherService.page(pageTeacher,null);
     }
 }
 
