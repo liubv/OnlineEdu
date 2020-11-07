@@ -1,2 +1,2 @@
-# OnlinceEdu
+# OnlineEducation
 Online education project
