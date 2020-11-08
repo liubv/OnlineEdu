@@ -7,6 +7,7 @@ import com.lbvguli.commonutils.R;
 import com.lbvguli.eduservice.entity.EduTeacher;
 import com.lbvguli.eduservice.entity.vo.TeacherQuery;
 import com.lbvguli.eduservice.service.EduTeacherService;
+import com.lbvguli.servicebase.exceptionhandler.GuliException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -119,8 +120,13 @@ public class EduTeacherController {
     @GetMapping("getTeacher/{id}")
     public R getTeacher(@PathVariable String id){
         EduTeacher eduTeacher = teacherService.getById(id);
+        try{
+            int i = 10/0;
+        }catch (GuliException e){
+            throw new GuliException(20001,"自定义异常处理");
+        }
         return R.ok().data("teacher",eduTeacher);
-    }
+}
 
     @ApiOperation(value = "修改讲师")
     @PostMapping("updateTeacher")
