@@ -70,20 +70,21 @@ public class EduTeacherController {
     }
 
     @ApiOperation(value = "条件查询带分页")
-    @PostMapping("findAllPageCondition/{current}/{limit}")
+    @PostMapping("pageTeacherCondition/{current}/{limit}")
     public R findAllPageCondition(@PathVariable long current,
                                   @PathVariable long limit,
-                                  @RequestBody(required =  false) TeacherQuery query){//false表示这个值不是必要的
+                                  @RequestBody(required =  false) TeacherQuery teacherQuery){//false表示这个值不是必要的
 
-        //page
+        //page对象
         Page<EduTeacher> pageTeacher = new Page<>(current,limit);
-        //wrapper
+
+        //wrapper条件
         QueryWrapper<EduTeacher> wrapper = new QueryWrapper<>();
 
-        String name = query.getName();
-        Integer level = query.getLevel();
-        String begin = query.getBegin();
-        String end = query.getEnd();
+        String name = teacherQuery.getName();
+        Integer level = teacherQuery.getLevel();
+        String begin = teacherQuery.getBegin();
+        String end = teacherQuery.getEnd();
         if(!StringUtils.isEmpty(name)){
             wrapper.like("name",name);
         }
@@ -96,6 +97,8 @@ public class EduTeacherController {
         if(!StringUtils.isEmpty(end)){
             wrapper.le("gmt_modified",end);
         }
+
+        wrapper.orderByDesc("gmt_create");
 
         teacherService.page(pageTeacher,wrapper);
 
