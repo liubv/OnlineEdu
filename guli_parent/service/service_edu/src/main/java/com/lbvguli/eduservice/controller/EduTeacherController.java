@@ -123,11 +123,6 @@ public class EduTeacherController {
     @GetMapping("getTeacher/{id}")
     public R getTeacher(@PathVariable String id){
         EduTeacher eduTeacher = teacherService.getById(id);
-        try{
-            int i = 10/0;
-        }catch (GuliException e){
-            throw new GuliException(20001,"自定义异常处理");
-        }
         return R.ok().data("teacher",eduTeacher);
 }
 
