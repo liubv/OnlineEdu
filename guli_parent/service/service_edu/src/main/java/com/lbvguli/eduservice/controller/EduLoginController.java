@@ -24,6 +24,6 @@ public class EduLoginController {
     public  R info(){
         List<String> roles = new ArrayList();
         roles.add("admin");
-        return R.ok().data("roles",roles).data("name","lbw").data("avater","https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1605266891836&di=f744843a9d0d7e44d4c13fe8e7df2439&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F00%2F90%2F47%2F9256efcbf458c23.jpg");
+        return R.ok().data("roles",roles).data("name","lbw").data("avatar","https://edu-lbv.oss-cn-shanghai.aliyuncs.com/2020/11/16/416275131b164a6da5ca00c4b7fedd90file.png");
     }
 }
