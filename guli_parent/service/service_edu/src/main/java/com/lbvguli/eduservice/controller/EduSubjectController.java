@@ -2,14 +2,14 @@ package com.lbvguli.eduservice.controller;
 
 
 import com.lbvguli.commonutils.R;
+import com.lbvguli.eduservice.entity.subject.OneSubject;
 import com.lbvguli.eduservice.service.EduSubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 /**
  * <p>
@@ -21,7 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @CrossOrigin
 @RestController
-@RequestMapping("/eduservice/edu-subject")
+@RequestMapping("/eduservice/subject")
 public class EduSubjectController {
     @Autowired
     private EduSubjectService subjectService;
@@ -32,6 +32,13 @@ public class EduSubjectController {
         //上传过来的excel文件
         subjectService.saveSubject(file,subjectService);
         return R.ok();
+    }
+
+    //课程分类列表功能
+    @GetMapping("getAllSubject")
+    public R getAllSubject(){
+        List<OneSubject> list = subjectService.getAllOneTwoSubject();
+        return R.ok().data("list",list);
     }
 
 
