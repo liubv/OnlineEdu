@@ -12,6 +12,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  * 课程 服务实现类
@@ -30,6 +32,7 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         //向课程表添加基本信息
         EduCourse eduCourse = new EduCourse();
         BeanUtils.copyProperties(courseInfoVo,eduCourse);
+        eduCourse.setIsDeleted(0);
         int insert = baseMapper.insert(eduCourse);
         if(insert == 0){
             throw new GuliException(20001,"添加课程信息失败");
@@ -43,5 +46,34 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         courseDescriptionService.save(eduCourseDescription);
 
         return cid;
+    }
+
+    @Override
+    public CourseInfoVo getCourseInfo(String courseId) {
+
+        //1 查询课程表
+        EduCourse eduCourse = baseMapper.selectById(courseId);
+        CourseInfoVo courseInfoVo = new CourseInfoVo();
+        BeanUtils.copyProperties(eduCourse,courseInfoVo);
+
+        //2 查询描述表
+        EduCourseDescription courseDescription = courseDescriptionService.getById(courseId);
+        courseInfoVo.setDescription(courseDescription.getDescription());
+
+        return courseInfoVo;
+    }
+
+    @Override
+    public void updateCourseInfo(CourseInfoVo courseInfoVo) {
+        EduCourse eduCourse = new EduCourse();
+        BeanUtils.copyProperties(courseInfoVo,eduCourse);
+        int update = baseMapper.updateById(eduCourse);
+        if(update == 0){
+            throw new GuliException(20001,"修改课程信息失败");
+        }
+        EduCourseDescription courseDescription = new EduCourseDescription();
+        courseDescription.setId(courseInfoVo.getId());
+        courseDescription.setDescription(courseInfoVo.getDescription());
+        courseDescriptionService.updateById(courseDescription);
     }
 }

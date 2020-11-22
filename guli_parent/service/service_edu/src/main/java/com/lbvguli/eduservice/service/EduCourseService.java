@@ -15,4 +15,8 @@ import com.lbvguli.eduservice.entity.vo.CourseInfoVo;
 public interface EduCourseService extends IService<EduCourse> {
 
     String saveCourseInfo(CourseInfoVo courseInfoVo);
+
+    CourseInfoVo getCourseInfo(String courseId);
+
+    void updateCourseInfo(CourseInfoVo courseInfoVo);
 }
