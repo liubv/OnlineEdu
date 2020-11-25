@@ -3,6 +3,7 @@ package com.lbvguli.eduservice.service.impl;
 import com.lbvguli.eduservice.entity.EduCourse;
 import com.lbvguli.eduservice.entity.EduCourseDescription;
 import com.lbvguli.eduservice.entity.vo.CourseInfoVo;
+import com.lbvguli.eduservice.entity.vo.CoursePublishVo;
 import com.lbvguli.eduservice.mapper.EduCourseMapper;
 import com.lbvguli.eduservice.service.EduCourseDescriptionService;
 import com.lbvguli.eduservice.service.EduCourseService;
@@ -75,5 +76,11 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         courseDescription.setId(courseInfoVo.getId());
         courseDescription.setDescription(courseInfoVo.getDescription());
         courseDescriptionService.updateById(courseDescription);
+    }
+
+    @Override
+    public CoursePublishVo getPublishCourseInfo(String courseId) {
+        CoursePublishVo publishCourseInfo = baseMapper.getPublishCourseInfo(courseId);
+        return publishCourseInfo;
     }
 }

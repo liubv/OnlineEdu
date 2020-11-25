@@ -2,7 +2,9 @@ package com.lbvguli.eduservice.controller;
 
 
 import com.lbvguli.commonutils.R;
+import com.lbvguli.eduservice.entity.EduCourse;
 import com.lbvguli.eduservice.entity.vo.CourseInfoVo;
+import com.lbvguli.eduservice.entity.vo.CoursePublishVo;
 import com.lbvguli.eduservice.service.EduCourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -43,6 +45,25 @@ public class EduCourseController {
         courseService.updateCourseInfo(courseInfoVo);
 
         return R.ok().data("courseId",id);
+
+    }
+
+    //根据课程id查询课程确认信息
+    @GetMapping("getPublishCourseInfo/{courseId}")
+    public R getPublishCourseInfo(@PathVariable String courseId){
+        CoursePublishVo coursePublishVo = courseService.getPublishCourseInfo(courseId);
+
+        return R.ok().data("publishCourse",coursePublishVo);
+    }
+
+    //修改课程发布状态
+    @GetMapping("publishCourse/{courseId}")
+    public R publishCourse(@PathVariable String courseId){
+        EduCourse eduCourse = new EduCourse();
+        eduCourse.setId(courseId);
+        eduCourse.setStatus("Normal");
+        courseService.updateById(eduCourse);
+        return R.ok();
 
     }
 }
