@@ -36,6 +36,7 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
     @Autowired
     private EduVideoService videoService;
 
+
     @Override
     public String saveCourseInfo(CourseInfoVo courseInfoVo) {
         //向课程表添加基本信息

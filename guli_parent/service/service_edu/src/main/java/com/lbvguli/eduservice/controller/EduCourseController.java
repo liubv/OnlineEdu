@@ -74,7 +74,6 @@ public class EduCourseController {
     }
 
     //课程列表
-    //TODO 条件查询带分页
     @PostMapping("getCourseCondition/{current}/{limit}")
     public R getCourse(@PathVariable long current,
                        @PathVariable long limit,
