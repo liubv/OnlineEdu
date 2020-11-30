@@ -15,7 +15,7 @@ public class ConstantUtils implements InitializingBean {
     public static String ACCESS_KEY_SECRET;
     @Override
     public void afterPropertiesSet() throws Exception {
-        ACCESS_KEY_ID = keyid;
-        ACCESS_KEY_SECRET = keysecret;
+        ACCESS_KEY_ID = keyid+"Nh9aLKaxUvGR3";
+        ACCESS_KEY_SECRET = keysecret+"7LUShctXIU2TAzFDgWz";
     }
 }

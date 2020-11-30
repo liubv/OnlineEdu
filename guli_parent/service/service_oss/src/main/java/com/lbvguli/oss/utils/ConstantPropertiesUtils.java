@@ -24,8 +24,8 @@ public class ConstantPropertiesUtils implements InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
         END_POINT = endpoint;
-        ACCESS_KEY_ID = keyId;
-        ACCESS_KEY_SECRET = keySecret;
+        ACCESS_KEY_ID = keyId + "aLKaxUvGR3";
+        ACCESS_KEY_SECRET = keySecret + "tXIU2TAzFDgWz";
         BUCKET_NAME = bucketName;
     }
 }
