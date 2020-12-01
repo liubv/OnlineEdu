@@ -18,4 +18,6 @@ public interface MemberService extends IService<Member> {
     void register(RegisterVo registerVo);
 
     String login(Member ucenterMember);
+
+    Member getByOpenid(String openid);
 }

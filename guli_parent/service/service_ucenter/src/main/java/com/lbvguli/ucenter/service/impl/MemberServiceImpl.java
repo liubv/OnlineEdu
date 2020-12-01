@@ -105,4 +105,12 @@ public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> impleme
         System.out.println(jwtToken);
         return jwtToken;
     }
+
+    @Override
+    public Member getByOpenid(String openid) {
+        QueryWrapper<Member> wrapper = new QueryWrapper<>();
+        wrapper.eq("openid",openid);
+        Member member = baseMapper.selectOne(wrapper);
+        return member;
+    }
 }

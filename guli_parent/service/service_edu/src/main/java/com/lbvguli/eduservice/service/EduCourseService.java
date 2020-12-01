@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.lbvguli.eduservice.entity.vo.CourseInfoVo;
 import com.lbvguli.eduservice.entity.vo.CoursePublishVo;
 
+import java.util.List;
+
 /**
  * <p>
  * 课程 服务类
@@ -24,4 +26,6 @@ public interface EduCourseService extends IService<EduCourse> {
     CoursePublishVo getPublishCourseInfo(String courseId);
 
     void removeCourse(String courseId);
+
+    List<EduCourse> selectByTeacherId(String teacherId);
 }

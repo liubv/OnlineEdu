@@ -1,5 +1,6 @@
 package com.lbvguli.eduservice.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.lbvguli.eduservice.entity.EduChapter;
 import com.lbvguli.eduservice.entity.EduCourse;
 import com.lbvguli.eduservice.entity.EduCourseDescription;
@@ -108,5 +109,13 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
             throw new GuliException(20001,"删除课程失败");
         }
 
+    }
+
+    @Override
+    public List<EduCourse> selectByTeacherId(String teacherId) {
+        QueryWrapper<EduCourse> wrapper = new QueryWrapper<>();
+        wrapper.eq("teacher_id",teacherId);
+        List<EduCourse> eduCourse = baseMapper.selectList(wrapper);
+        return eduCourse;
     }
 }
