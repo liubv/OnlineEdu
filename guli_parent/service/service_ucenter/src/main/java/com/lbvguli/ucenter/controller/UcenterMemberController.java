@@ -51,5 +51,7 @@ public class UcenterMemberController {
         return R.ok().data("userInfo",member);
     }
 
+
+
 }
 

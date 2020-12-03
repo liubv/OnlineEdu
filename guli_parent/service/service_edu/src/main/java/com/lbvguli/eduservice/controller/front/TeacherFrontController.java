@@ -28,9 +28,6 @@ public class TeacherFrontController {
     public R getTeacherFrontList(@PathVariable long page,@PathVariable long limit){
          Page<EduTeacher> pageTeacher = new Page(page,limit);
         Map<String,Object> map = teacherService.getTeacherFrontList(pageTeacher);
-
-
-
         return R.ok().data("teacherList",map);
     }
 

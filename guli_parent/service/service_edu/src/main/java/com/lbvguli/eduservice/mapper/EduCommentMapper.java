@@ -1,0 +1,16 @@
+package com.lbvguli.eduservice.mapper;
+
+import com.lbvguli.eduservice.entity.EduComment;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+/**
+ * <p>
+ * 评论 Mapper 接口
+ * </p>
+ *
+ * @author testjava
+ * @since 2020-12-03
+ */
+public interface EduCommentMapper extends BaseMapper<EduComment> {
+
+}
