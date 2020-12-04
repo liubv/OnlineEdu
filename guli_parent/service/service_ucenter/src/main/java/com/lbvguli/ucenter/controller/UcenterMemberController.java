@@ -3,10 +3,12 @@ package com.lbvguli.ucenter.controller;
 
 import com.lbvguli.commonutils.JwtUtils;
 import com.lbvguli.commonutils.R;
+import com.lbvguli.commonutils.ordervo.MemberOrder;
 import com.lbvguli.ucenter.entity.Member;
 
 import com.lbvguli.ucenter.entity.vo.RegisterVo;
 import com.lbvguli.ucenter.service.MemberService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,6 +53,14 @@ public class UcenterMemberController {
         return R.ok().data("userInfo",member);
     }
 
+    //根据用户id获取到用户信息
+    @PostMapping("getUserInfoOrder/{id}")
+    public MemberOrder getUserInfoOrder(@PathVariable String id){
+        Member member = memberService.getById(id);
+        MemberOrder memberOrder = new MemberOrder();
+        BeanUtils.copyProperties(member,memberOrder);
+        return memberOrder;
+    }
 
 
 }

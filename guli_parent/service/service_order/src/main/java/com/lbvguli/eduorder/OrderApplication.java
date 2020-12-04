@@ -1,4 +1,5 @@
-package com.lbvguli.ucenter;
+package com.lbvguli.eduorder;
+
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -8,12 +9,12 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@MapperScan("com.lbvguli.ucenter.mapper")
-@EnableFeignClients
 @EnableDiscoveryClient
+@EnableFeignClients
 @ComponentScan(basePackages = {"com.lbvguli"})
-public class UcenterApplication {
+@MapperScan("com.lbvguli.eduorder.mapper")
+public class OrderApplication {
     public static void main(String[] args) {
-        SpringApplication.run(UcenterApplication.class,args);
+        SpringApplication.run(OrderApplication.class,args);
     }
 }
